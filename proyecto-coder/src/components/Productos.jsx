@@ -1,7 +1,6 @@
 import Producto from './Producto'
 
 function Productos({videojuegos}) {
-
   
   return (
     <div>
