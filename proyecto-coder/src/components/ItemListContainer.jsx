@@ -1,18 +1,28 @@
 import { useState, useEffect } from "react";
+import {collection, getFirestore, getDocs} from 'firebase/firestore'
 import Productos from "./Productos";
 
 function ItemListContainer() {
   const [videojuegos, setVideojuegos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const db = getFirestore();
 
   useEffect(() => {
-    fetch("https://www.cheapshark.com/api/1.0/deals?upperPrice=50&pageSize=20") //estuve como 2 dias buscando una Api que funcione
-    .then(res => res.json())
-    .then((data)  => {
-        setVideojuegos(data);
-        console.log(data);
-    })
-    .catch(err => console.error(err));
-  }, []);
+    const listaJuegos = collection(db, "videojuegos");
+
+    getDocs(listaJuegos)
+      .then((snapshot) => {
+        const juegos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        setVideojuegos(juegos);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, [db]);
+
+  if (loading) {
+    return <h2>Cargando...</h2>;
+  }
 
   return (
     <div>

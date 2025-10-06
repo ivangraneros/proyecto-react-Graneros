@@ -6,6 +6,7 @@ import Nosotros from './components/Nosotros'
 import Error from './components/Error'
 import ItemListContainer from './components/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer'
+import Cart from './components/Cart'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path='/nosotros' element={<Nosotros />} />
             <Route path='/productos' element={<ItemListContainer/>} />
             <Route path='/productos/:id' element={<ItemDetailContainer/>} />
+            <Route path='/cart' element={<Cart/>} />
             <Route path='/*' element={<Error />} />
           </Route>
         </Routes>

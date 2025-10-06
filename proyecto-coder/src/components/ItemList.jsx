@@ -12,11 +12,8 @@ const categoriasPrecio = {
 function ItemList({productos = []}) {
   const [precioSeleccionado, setPrecioSeleccionado] = useState(null);
 
-  const filteredPrecio = precioSeleccionado && productos.length > 0
-    ? productos.filter((producto) => {
-        const precio = parseFloat(producto.normalPrice);
-        return precio >= precioSeleccionado[0] && precio <= precioSeleccionado[1];
-      })
+ const filteredPrecio = precioSeleccionado
+    ? productos.filter((p) => p.precio >= precioSeleccionado[0] && p.precio <= precioSeleccionado[1])
     : productos;
 
   return (
@@ -31,11 +28,12 @@ function ItemList({productos = []}) {
 
          {filteredPrecio.map(prod => (
           <Producto
-            key={prod.dealID}
-            dealID={prod.dealID}
-            title={prod.title}
-            normalPrice={prod.normalPrice}
-            dealRating={prod.dealRating}
+            key={prod.id}
+            id={prod.id}
+            nombre={prod.nombre}
+            precio={prod.precio}
+            rating={prod.rating}
+            stock ={prod.stock}
           />
         ))}
     </div>
