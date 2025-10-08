@@ -2,6 +2,7 @@ import  './style.css'
 import { Link } from 'react-router-dom'
 
 function Producto({id,nombre, precio, rating,stock}) {
+  
   return (
     <Link to = {`/productos/${id}`} >
       <div className='card'>

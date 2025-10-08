@@ -1,7 +1,6 @@
 import Item from './Item'
 
 
-
 function Home() {
   
 

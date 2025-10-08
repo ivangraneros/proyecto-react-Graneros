@@ -5,23 +5,72 @@
     margin: 16px;
 }
 
+
 .navbar {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    list-style: none;
+  position: sticky;          
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
 }
 
 .navbar ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap : 25px;
-    justify-content: center;
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
 }
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 
 button {
     margin: 10px;
     padding: 10px 20px;
     border-color:white;
+}
+
+
+
+.loader {
+  border: 6px solid #f3f3f3; 
+  border-top: 6px solid #007bff; 
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto; 
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Toast */
+
+.toast {
+  position: fixed;
+  bottom: 120px;
+  right: 120px;
+  background-color: #007bff;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: fadein 0.3s, fadeout 0.3s 1.7s;
+  z-index: 1000;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeout {
+  from { opacity: 1; transform: translateY(0);}
+  to { opacity: 0; transform: translateY(20px);}
 }

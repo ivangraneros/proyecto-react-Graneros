@@ -6,10 +6,12 @@ function Item() {
 
     const [productos, setProductos] = useState([])
 
+    const [loading, setLoading] = useState(true);
     const db = getFirestore();
 
     useEffect(() => {
-        const juegosCollection = collection(db, "videojuegos");
+
+    const juegosCollection = collection(db, "videojuegos");
 
     getDocs(juegosCollection)
       .then((snapshot) => {
@@ -22,8 +24,14 @@ function Item() {
         }));
         setProductos(productosData);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   }, [db]);
+
+    if (loading) {
+    return  <div className="loader"></div>;
+  }
+
 
   return (
     <div>

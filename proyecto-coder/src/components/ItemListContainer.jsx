@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import {collection, getFirestore, getDocs} from 'firebase/firestore'
-import Productos from "./Productos";
+import Productos from "./Productos"; 
+import './style.css'
+
 
 function ItemListContainer() {
   const [videojuegos, setVideojuegos] = useState([]);
@@ -13,7 +15,10 @@ function ItemListContainer() {
 
     getDocs(listaJuegos)
       .then((snapshot) => {
-        const juegos = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        const juegos = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+          }));
         setVideojuegos(juegos);
       })
       .catch((error) => console.error(error))
@@ -21,7 +26,7 @@ function ItemListContainer() {
   }, [db]);
 
   if (loading) {
-    return <h2>Cargando...</h2>;
+    return  <div className="loader"></div>;
   }
 
   return (
