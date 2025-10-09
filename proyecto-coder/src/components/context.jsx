@@ -22,7 +22,6 @@ const Carrito = ({children}) => {
         });
         }
 
-
         const vaciarCarrito = () => {
             setCartList([]);
         }
